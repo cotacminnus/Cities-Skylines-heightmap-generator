@@ -19,9 +19,9 @@ const sharpenKernel = [
     [-0.00391, -0.01563, -0.02344, -0.01563, -0.00391] 
 ]; 
 
-var vmapSize = 18.144;
-var mapSize = 17.28;
-var tileSize = 1.92;
+var mapSize = 14.336;
+var vmapSize = mapSize * 1.05;
+var tileSize = mapSize / 9;
 
 var grid = loadSettings();
 
