@@ -21,7 +21,7 @@ const sharpenKernel = [
 
 var mapSize = 14.336;
 var vmapSize = mapSize * 1.05;
-var tileSize = mapSize / 9;
+var tileSize = mapSize / 20.5;
 
 var grid = loadSettings();
 
@@ -145,12 +145,12 @@ function addSource() {
 
     map.addSource('playable', {
         'type': 'geojson',
-        'data': getGrid(grid.lng, grid.lat, vmapSize / 9 * 5)
+        'data': getGrid(grid.lng, grid.lat, vmapSize)
     });
 
     map.addSource('start', {
         'type': 'geojson',
-        'data': getGrid(grid.lng, grid.lat, vmapSize / 9)
+        'data': getGrid(grid.lng, grid.lat, vmapSize / 7)
     });
 
     map.addSource('mapbox-streets', {
@@ -387,8 +387,8 @@ function hideDebugLayer() {
 
 function setGrid(lng, lat, size) {
     map.getSource('grid').setData(getGrid(lng, lat, size));
-    map.getSource('start').setData(getGrid(lng, lat, size / 9));
-    map.getSource('playable').setData(getGrid(lng, lat, size / 9 * 5));
+    map.getSource('start').setData(getGrid(lng, lat, size / 7));
+    map.getSource('playable').setData(getGrid(lng, lat, size));
     grid.zoom = map.getZoom();
 }
 
@@ -624,7 +624,7 @@ function zoomOut() {
 function changeMapsize(el) {
     mapSize = el.value / 1;
     vmapSize = mapSize * 1.05;
-    tileSize = mapSize / 9;
+    tileSize = mapSize / 20.5;
     setGrid(grid.lng, grid.lat, vmapSize);
 
     grid.minHeight = null;
@@ -899,7 +899,7 @@ function autoSettings(withMap = true) {
 
     mapSize = scope.mapSize / 1;
     vmapSize = mapSize * 1.05;
-    tileSize = mapSize / 9;
+    tileSize = mapSize / 20.5;
 
     if (withMap) {
         new Promise((resolve) => {
